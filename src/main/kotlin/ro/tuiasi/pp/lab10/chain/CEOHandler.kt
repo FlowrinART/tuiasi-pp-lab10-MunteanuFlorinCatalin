@@ -1,37 +1,22 @@
+// CEOHandler.kt
 package ro.tuiasi.pp.lab10.chain
 
 import kotlinx.coroutines.delay
 
-/**
- * Handler-ul de nivel cel mai înalt din lanț — CEO.
- *
- * Inițiază cererea pe lanțul descendent cu formatul `"Request - <mesaj>"`
- * și primește răspunsul final de la baza lanțului.
- *
- * Simulează procesarea asincronă cu `delay()`.
- */
 class CEOHandler : Handler {
 
     override var next: Handler? = null
     override var previous: Handler? = null
 
-    /**
-     * Transformă mesajul în cerere formală și o trimite mai departe în lanț.
-     *
-     * Format mesaj trimis: `"Request - <message>"`
-     *
-     * @param message Mesajul inițial
-     * @return Răspunsul final primit de la baza lanțului
-     */
     override suspend fun handleRequest(message: String): String {
-        // TODO("De implementat")
-        // Pași de urmat:
-        // 1. Simulați procesarea asincronă: delay(100) (100ms)
-        // 2. Formați mesajul cererii: "Request - $message"
-        // 3. Logați sau printați: println("[CEO] Trimit cererea: $cerere")
-        // 4. Delegați la next: val raspuns = next?.handleRequest(cerere) ?: cerere
-        // 5. Logați răspunsul primit: println("[CEO] Am primit răspunsul: $raspuns")
-        // 6. Returnați răspunsul
-        TODO("De implementat: inițiază cererea cu 'Request - <mesaj>' și delegă la next")
+        delay(100)
+
+        val cerere = "Request - $message"
+        println("[CEO] Trimit cererea: $cerere")
+
+        val raspuns = next?.handleRequest(cerere) ?: cerere
+
+        println("[CEO] Am primit răspunsul: $raspuns")
+        return raspuns
     }
 }
